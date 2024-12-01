@@ -48,6 +48,7 @@ class Player {
         velocity: bufferLength * 0.5,
         dirX: Math.random() * (1 - -1) + -1,
         dirY: Math.random() * (1 - -1) + -1,
+        player: this,
       })
     );
   }
@@ -66,6 +67,19 @@ class Player {
       this.x += this.speed;
     }
 
+    //Checking border collision
+    this.x + this.radius > this.canvas.width
+      ? (this.x = this.canvas.width - this.radius)
+      : this.x - this.radius < 0
+      ? (this.x = this.radius)
+      : null;
+
+    this.y + this.radius >= this.canvas.height
+      ? (this.y = this.canvas.height - this.radius)
+      : this.y - this.radius < 0
+      ? (this.y = this.radius)
+      : null;
+
     for (let i = 0; this.projectiles.length > i; i++) {
       this.projectiles[i].update();
       if (this.projectiles[i].isDestroy) {
@@ -81,8 +95,9 @@ class Player {
       this.timeCounter++;
       if (this.timeCounter === this.healthTime) {
         this.HP < 10 ? (this.HP += 0.02) : (this.HP = 10);
+        this.heart > 0 ? this.heart-- : (this.heart = 0);
+        this.heart === 255 ? (this.HP += 0.01) : null;
         this.timeCounter = 0;
-        console.log(this.HP);
       }
     }
   }

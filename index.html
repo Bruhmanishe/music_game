@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./index.css" />
     <title>Music Game</title>
   </head>
@@ -10,12 +10,10 @@
     <div id="canvas-conrainer">
       <canvas id="game-canvas"></canvas>
     </div>
-    <audio
-      id="songPerSe"
-      src="./staff/songs/Tainted Love.mp3"
-      style="display: none"
-    ></audio>
+    <audio id="songPerSe" style="display: none"></audio>
+    <input type="file" accept="audio/*" style="display: none" id="songInput" />
     <script src="./staff/classes/Game.js"></script>
+    <script src="./staff/classes/StartButton.js"></script>
     <script src="./staff/classes/Joystick.js"></script>
     <script src="./staff/classes/Enemy.js"></script>
     <script src="./staff/classes/Projectile.js"></script>

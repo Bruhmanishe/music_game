@@ -69,8 +69,8 @@ class Enemy {
       this.radius + this.game.player.radius
     ) {
       this.HP = 0;
-      this.game.player.HP -= 0.2;
-      this.game.player.heart -= 2;
+      this.game.player.HP -= 0.02;
+      this.game.player.heart -= 5;
     }
   }
 

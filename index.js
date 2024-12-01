@@ -7,7 +7,6 @@ const resolutions = {
 };
 
 const audio = document.getElementById("songPerSe");
-audio.crossOrigin = "anonymous";
 let audioSource;
 let analyser;
 let dataArray;
@@ -32,33 +31,7 @@ window.onload = () => {
     game.update({ dataArray, analyser });
     game.draw();
 
-    // ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
-    // ctx.rect(0, 0, canvas.width, canvas.height);
-    // ctx.fill();
-    // player.update(constrols);
-    // player.draw();
     requestAnimationFrame(animate);
-
-    // if (dataArray) {
-    //   analyser.getByteFrequencyData(dataArray);
-    //   const bufferWidth = 10;
-    //   let x = 0;
-    //   for (let i = 0; dataArray.length / 2 > i; i++) {
-    //     if (dataArray[i] > 150) {
-    //       buffersAboveMin++;
-    //     }
-    //     ctx.beginPath();
-    //     ctx.fillStyle = "white";
-    //     ctx.rect(x, canvas.height, bufferWidth, -dataArray[i] / 5);
-    //     ctx.fill();
-    //     x += bufferWidth + 1;
-    //   }
-    //   if (buffersAboveMin > 15) {
-    //     player.updateProjectiles(buffersAboveMin);
-    //   }
-    //   buffersAboveMin = 1;
-    //   console.log(dataArray);
-    // }
   }
 
   window.addEventListener("keydown", (e) => {

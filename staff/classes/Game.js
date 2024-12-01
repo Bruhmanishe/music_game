@@ -5,10 +5,21 @@ class Game {
     this.controls = controls;
     this.joystick = new Joystick({ canvas, ctx, controls, game: this });
     this.player = new Player({ ctx, canvas, speed: 5, game: this });
+    this.startButton = new StartButton({ canvas, ctx, game: this });
     this.enemies = [];
     this.buffersAboveMin = 1;
     this.framesCounter = 0;
     this.secondToFrames = 60;
+    this.isMobile = navigator.maxTouchPoints > 0;
+
+    window.addEventListener("resize", (e) => {
+      this.canvas.width = window.innerWidth;
+      this.canvas.height = window.innerHeight;
+      this.player.radius =
+        this.canvas.width > this.canvas.height
+          ? this.canvas.width * 0.015
+          : this.canvas.height * 0.015;
+    });
   }
 
   update({ dataArray, analyser }) {
@@ -23,7 +34,8 @@ class Game {
           : this.player.heart++;
       }
     });
-    this.joystick.update();
+
+    this.isMobile ? this.joystick.update() : null;
 
     if (dataArray) {
       analyser.getByteFrequencyData(dataArray);
@@ -62,7 +74,8 @@ class Game {
     this.ctx.fill();
     this.player.draw();
     this.enemies.forEach((enemy) => enemy.draw());
-    this.joystick.draw();
+    this.isMobile ? this.joystick.draw() : null;
+    this.startButton ? this.startButton.draw() : null;
   }
 
   #createEnemies() {

@@ -29,18 +29,16 @@ class Joystick {
         this.joystickY = e.touches[0].clientY;
         this.isInFoucus = true;
         if (!this.isGameStarted) {
-          audio.play();
-          const audioCtx = new AudioContext();
-
-          audioSource = audioCtx.createMediaElementSource(audio);
-          analyser = audioCtx.createAnalyser();
-          audioSource.connect(analyser);
-          analyser.connect(audioCtx.destination);
-          analyser.fftSize = 64;
-
-          const bufferLength = analyser.frequencyBinCount;
-          dataArray = new Uint8Array(bufferLength);
-          this.isGameStarted = true;
+          // audio.play();
+          // const audioCtx = new AudioContext();
+          // audioSource = audioCtx.createMediaElementSource(audio);
+          // analyser = audioCtx.createAnalyser();
+          // audioSource.connect(analyser);
+          // analyser.connect(audioCtx.destination);
+          // analyser.fftSize = 64;
+          // const bufferLength = analyser.frequencyBinCount;
+          // dataArray = new Uint8Array(bufferLength);
+          // this.isGameStarted = true;
         }
       }
     });
@@ -48,11 +46,16 @@ class Joystick {
       if (
         this.isInFoucus &&
         e.touches[0].clientX > this.x - this.outerRadius &&
-        e.touches[0].clientX < this.x + this.outerRadius &&
+        e.touches[0].clientX < this.x + this.outerRadius
+      ) {
+        this.joystickX = e.touches[0].clientX;
+      }
+
+      if (
+        this.isInFoucus &&
         e.touches[0].clientY > this.y - this.outerRadius &&
         e.touches[0].clientY < this.y + this.outerRadius
       ) {
-        this.joystickX = e.touches[0].clientX;
         this.joystickY = e.touches[0].clientY;
       }
     });

@@ -1,5 +1,6 @@
 class Projectile {
-  constructor({ canvas, ctx, radius, x, y, dirX, dirY, velocity }) {
+  constructor({ canvas, ctx, radius, x, y, dirX, dirY, velocity, player }) {
+    this.player = player;
     this.x = x;
     this.y = y;
     this.canvas = canvas;
@@ -9,11 +10,14 @@ class Projectile {
     this.dirY = dirY;
     this.velocity = velocity;
     this.isDestroy = false;
+    this.heart = this.player.heart;
   }
   draw() {
     this.ctx.beginPath();
     this.ctx.fillStyle = "red";
-    this.ctx.strokeStyle = "red";
+    this.ctx.strokeStyle = `rgba(255, ${255 - this.heart}, ${
+      255 - this.heart
+    }, 1)`;
     this.ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
     this.ctx.stroke();
   }
